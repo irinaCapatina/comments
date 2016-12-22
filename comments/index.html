@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" media="screen,projection">
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="app.js"></script>
+	<div ng-controller="NewController as main">
+		<!-- here starts the form-->
+		<div class="card bordered z-depth-2 general ">
+			<div class="row container ">
+				<form class="col s12 ">
+					<div class="row">
+						<div class="input-field col s12">
+							<!-- <i class="material-icons prefix"></i> -->
+							<textarea id="icon_prefix2" class="materialize-textarea" ng-model="main.test"></textarea>
+							<label for="icon_prefix2">Type your opinion here: </label>
+						</div>
+					</div>
+				</form>
+				<div class="right-align">
+					<a class="waves-effect waves-light btn" ng-click="main.ngClickHandler()">Send</a>
+				</div>
+				<br>
+				<br>
+				<!-- comments here -->
+				<div ng-repeat="element in main.array track by $index" >
+					<div class="row">
+						<form class="col s12">
+							<div class="row" >
+								<div class="input-field col s12">
+									<i class="material-icons prefix" ><i class="material-icons">person</i></i>	
+									<textarea id="textarea1" class="materialize-textarea" ng-model="main.test" ng-show="isOn" ></textarea>
+									<label for="textarea1"> {{ $index }}. {{ element }}</label>
+									<div class="right-align">
+										<a href="#" ng-click="main.ngDelete($index)"><i class="material-icons" >delete</i></a>
+									
+										<a href="#"><i class="material-icons" ng-click="isOn =!isOn; editorEnabled =! editorEnabled; enableEditor()">edit</i></a>
+										<div class="left align">
+											<a class="waves-effect waves-light btn" ng-show="editorEnabled" ng-click="main.save()">Done</a></div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- end -->
+			</div>
+			<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+			<script type="text/javascript" src="bower_components/materialize/bin/materialize.js"></script>
+</body>
+
+</html>
