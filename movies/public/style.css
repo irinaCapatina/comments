@@ -1,0 +1,30 @@
+.pagination {
+	color: #5F021F !important;
+}
+
+.waves-ripple {
+	background-color: #5F021F;
+}
+
+.cursor {
+	cursor: pointer;
+}
+
+html {
+    font-family: 'Muli', sans-serif;
+}
+
+.justify {
+	 text-align: justify;
+}
+
+.parallax-container {
+      height: "your height here";
+}
+
+.highlighted { 
+ 	background: #FFFFB2 
+ }
+
+
+

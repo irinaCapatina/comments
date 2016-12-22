@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Filter Table</title>
+	<link rel="stylesheet" href="css/materialize.min.css" media="screen,projection">
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+</head>
+
+<body ng-controller="MainController as main">
+<!-- 	<div class="container"> -->
+		<script src="libs/angular.js"></script>
+		<script src="app.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+
+
+<div class="parallax-container">
+	<div class="parallax"><img src="images/cinema.jpg"></div>
+  </div>
+  <div class="section white">
+	<div class="row container">
+	  <p class="grey-text text-darken-3 lighten-3"> 	
+	  </p>
+	</div>
+  </div>
+
+	<div class="row">
+		<form class="col s12">
+			<div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">search</i>
+					<input id="icon_prefix" type="text" class="validate" ng-model="main.searchName">
+					<label for="icon_prefix">Input filter text here</label>
+				</div>
+				<div class="input-field col s6">
+					<select class="icons">
+						<option value="" disabled selected>Choose your option</option>
+						<option value="" class="circle">Action</option>
+						<option value="" class="circle">Adventure</option>
+						<option value="" class="circle">Animation</option>
+						<option value="" class="circle">Biography</option>
+						<option value="" class="cursor">Comedy</option>
+						<option value="" class="circle">Crime</option>
+						<option value="" class="circle">Drama</option>
+						<option value="" class="circle">Family</option>
+						<option value="" class="circle">Fantasy</option>
+						<option value="" class="circle">Mystery</option>
+						<option value="" class="circle">Sci-Fi</option>
+						<option value="" class="circle">Thriller</option>
+						<option value="" class="circle">War</option>						
+					</select>
+				</div>
+			</div>
+	</div>
+
+<table class="highlight">
+	<thead>
+		<tr>
+			<th ng-click="sortType = 'title'; sortReverse != sortReverse" class="cursor" width="150px">Title</th>
+			<th ng-click="sortType = 'rating'; sortReverse != sortReverse" class="cursor" width="100px">Rating</th>
+			<th width="100px">Genre</th>
+			<th width="100px">Release Date</th>
+			<th ng-click="sortType = 'Storyline'; sortReverse != sortReverse" class="cursor justify">Storyline</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in main.collection | filter: main.searchName | StartFrom: main.startingItem() | limitTo: main.itemsPerPage | orderBy: sortType: main.sortReverse | filter: main.searchItem | filter:main.searchText ">
+			<td ng-bind-html="item.title | FindTxt:searchText">{{ item.title}}</td>
+			<td ng-bind-html="item.rating | RatingFilter |  FindTxt:searchText">{{item.rating}}</td>
+			<td ng-bind-html="item.genre | FindTxt:searchText">{{item.genre}}</td>
+			<td ng-bind-html="item.releaseDate | FindTxt:searchText">{{ item.releaseDate | date:"dd/MM/yyyy HH:mm:ss"}}</td>
+			<td ng-bind-html="item.storyline | FindTxt:searchText">{{ item.storyline}}</td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- pagination -->
+<div class="right-align">
+	<button class="pull-left btn btn-primary btn-sm" ng-disabled="main.mainPage()" ng-click="main.pageBack()"> Previous </button>
+	<span>{{ main.currentPage }} from {{ main.nrOfPages() }}</span>
+	<button class="pull-right btn btn-primary btn-sm" ng-disabled="main.lastPage()" ng-click="main.pageForward()"> Next </button>
+</div>
+</div>
+
+<!-- pagination  v2-->
+<!-- <ul class="pagination right-align">
+	<li>
+		<i class="material-icons pagination cursor" ng-disabled="main.mainPage() == 0" ng-click="main.pageBack()">chevron_left</i>
+	</li>
+	<span>{{ main.currentPage + 1 }} from {{ main.nrOfPages() }}</span>
+	<li class="waves-effect">
+		<i class="material-icons pagination" ng-disabled="main.lastPage()" ng-click="main.pageForward()">chevron_right</i>
+	</li>
+</ul>
+ -->
+
+ <!-- find any letter/word -->
+   <div class="row">
+	<form class="col s12 ">
+	  <div class="row">
+		<div class="input-field col s6" >
+		  <i class="material-icons prefix">search</i>
+		  <input id="icon_prefix" type="text" class="validate" ng-model="searchText">
+		  <label for="icon_prefix">Search</label>
+		</div>
+	  </div>
+	</form>
+  </div>
+</form>
+
+<!-- select form here -->
+<script>
+$(document).ready(function() {
+	$('select').material_select();
+});
+$(document).ready(function(){
+  $('.parallax').parallax();
+});
+</script>
+
+</body>
+</html>
