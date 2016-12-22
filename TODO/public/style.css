@@ -1,0 +1,53 @@
+.changeCursor{
+	cursor: pointer;
+}
+.body {
+    font-family: 'Muli', sans-serif;
+}
+
+.style2 {
+  border-top: 3px double #8c8b8b;
+}
+
+.font-style {
+	font-size: 32px;
+	font-weight: bold;
+	font-color: #000000;
+}
+
+.container-size {
+	/*height: 120px;*/
+	left: 45%;
+	margin: -160px 0 0 -152px;
+	position: absolute;
+	top: 25%;
+	width: 500px;
+}
+
+.bg-color {
+	background-color: #e0f7fa;
+	/*background-image: url(img/bg.jpg);*/
+}
+
+.card-panel {
+  transition: box-shadow .40s;
+  padding: 20px;
+  margin: 0.5rem 0 1rem 0;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.right-align {
+	float: right;
+}
+
+.row {
+	width: 1050px;
+}
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+	position: relative;
+	left: 0;
+	opacity: 100;
+}

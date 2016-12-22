@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-color">
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript" src="controllers/goals.controller.js"></script>
+	<script type="text/javascript" src="services/api.service.js"></script>
+	<script type="text/javascript" src="services/config.service.js"></script>
+
+	<div class="container body container-size" ng-controller="MainController as main">
+		<form class="form" ng-submit=main.addNewGoal()>
+				<h4>To do list</h4>
+				<hr class="style2">
+					<div class="row">
+						<div class="input-field col s6">
+							<input placeholder="to do" id="todo" type="text" class="validate" ng-model="main.goal.text">
+							<button type="submit" class="btn btn-primary btn-sm right-align">Add</button>				
+						</div>
+					</div>
+
+					<ul ng-repeat="goals in main.collection | filter: main.goal.text | filter:main.searchText">
+						<li class="card-panel ok">
+							<span>{{goals.text}}</span>
+							<label>
+							<input type="checkbox" ng-init="main.goalCheckBox" ng-model="goals.status" ng-change="main.goalCheckBoxHandler(goals.id, goals.status)"> 
+							</label>
+							<i class="material-icons changeCursor right-align" ng-click="main.deleteGoal(goals.id)">delete</i>
+						</li>
+					</ul>
+
+					<div class="row">
+						<div class="input-field col s6">
+							<i class="material-icons prefix">search</i>
+							<input id="icon_prefix" type="text" class="validate" placeholder="search needed goal" ng-model="main.searchText">
+							<label for="icon_prefix"></label>
+						</div>	
+					</div>
+				</div>
+		</form>
+	</div>
+</body>
+
+</html>
+
+
+
